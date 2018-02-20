@@ -1,6 +1,4 @@
 from flask import Flask, redirect, url_for, request, jsonify, render_template, g
-from VersionScraper import get_versions
-from AlternateScraper import get_alternatives
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
@@ -71,6 +69,13 @@ class Blog(db.Model):
 		self.timestamp = timestamp
 		self.keywords = keywords
 
+db.create_all()
 
+@app.route('/')
+def index():
+	return 'hello world'
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True)
 
 
