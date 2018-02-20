@@ -31,6 +31,13 @@ class Prebirth(db.Model):
 	donts = db.Column(db.String)
 	diet = db.Column(db.String)
 
+	def __init__(self, month_no, article, dos, donts, diet):
+		self.month_no = month_no
+		self.article = article
+		self.dos = dos
+		self.donts = donts
+		self.diet = diet
+
 
 class Postbirth(db.Model):
 	__tablename__ = 'Postbirth'
@@ -42,6 +49,13 @@ class Postbirth(db.Model):
 	donts = db.Column(db.String)
 	diet = db.Column(db.String)
 
+	def __init__(self, month_no, article, dos, donts, diet):
+		self.month_no = month_no
+		self.article = article
+		self.donts = donts
+		self.dos = dos
+		self.diet = diet
+
 class Blog(db.Model):
 	__tablename__ = 'Blogs'
 
@@ -50,5 +64,13 @@ class Blog(db.Model):
 	article = db.Column(db.String)
 	timestamp = db.Column(db.DateTime)
 	keywords = db.String(db.String)
+
+	def __init__(self, author_name, article, timestamp, keywords):
+		self.author_name = author_name
+		self.article = article
+		self.timestamp = timestamp
+		self.keywords = keywords
+
+
 
 
