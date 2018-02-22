@@ -112,6 +112,10 @@ def show_postbirth_article(month_no):
     data = json.loads(data.data)
     return jsonify({'data':data})
 
+@app.route('/api/prebirth')
+def prebirth():
+    return render_template("prebirth.html")
+
 
 @app.route('/')
 def index():
