@@ -4,6 +4,8 @@ from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_cors import CORS
+from Serialiser import *
+from marshmallow import pprint
 import json
 import re
 import os
@@ -63,13 +65,28 @@ class Blog(db.Model):
 	timestamp = db.Column(db.DateTime)
 	keywords = db.String(db.String)
 
-	def __init__(self, author_name, article, timestamp, keywords):
+	def __init__(self, author_name, article, title, timestamp, keywords):
 		self.author_name = author_name
 		self.article = article
+		self.title = title
 		self.timestamp = timestamp
 		self.keywords = keywords
 
 db.create_all()
+
+@app.route('/api/prebirth_articles/<int:month_no>')
+def show_prebirth_article(month_no):
+	prebirth_article = Prebirth.query.filter_by(month_no=month_no).all()[0]
+	response = {}
+	prebirth_schema = PrebirthSchema()
+	data = prebirth_schema.dumps(prebirth_article)
+	data = json.loads(data.data)
+	return jsonify({'data':data})
+
+@app.route('/api/postbirth_articles/<int:month_no>')
+def show_postbirth_article(month_no):
+	pass
+
 
 @app.route('/')
 def index():
