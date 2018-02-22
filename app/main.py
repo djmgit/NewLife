@@ -22,80 +22,100 @@ app.config['SECRET_KEY'] = "THIS IS SECRET"
 db = SQLAlchemy(app)
 
 class Prebirth(db.Model):
-	__tablename__ = 'Prebirth'
+    __tablename__ = 'Prebirth'
 
-	id = db.Column('artcile_id', db.Integer, primary_key=True)
-	month_no = db.Column(db.Integer)
-	article = db.Column(db.String)
-	dos = db.Column(db.String)
-	donts = db.Column(db.String)
-	diet = db.Column(db.String)
+    id = db.Column('artcile_id', db.Integer, primary_key=True)
+    month_no = db.Column(db.Integer)
+    article = db.Column(db.String)
+    dos = db.Column(db.String)
+    donts = db.Column(db.String)
+    diet = db.Column(db.String)
 
-	def __init__(self, month_no, article, dos, donts, diet):
-		self.month_no = month_no
-		self.article = article
-		self.dos = dos
-		self.donts = donts
-		self.diet = diet
+    def __init__(self, month_no, article, dos, donts, diet):
+        self.month_no = month_no
+        self.article = article
+        self.dos = dos
+        self.donts = donts
+        self.diet = diet
 
 
 class Postbirth(db.Model):
-	__tablename__ = 'Postbirth'
+    __tablename__ = 'Postbirth'
 
-	id = db.Column('article_id', db.Integer, primary_key=True)
-	month_no = db.Column(db.Integer)
-	article = db.Column(db.String)
-	dos = db.Column(db.String)
-	donts = db.Column(db.String)
-	diet = db.Column(db.String)
+    id = db.Column('article_id', db.Integer, primary_key=True)
+    month_no = db.Column(db.Integer)
+    article = db.Column(db.String)
+    dos = db.Column(db.String)
+    donts = db.Column(db.String)
+    diet = db.Column(db.String)
 
-	def __init__(self, month_no, article, dos, donts, diet):
-		self.month_no = month_no
-		self.article = article
-		self.donts = donts
-		self.dos = dos
-		self.diet = diet
+    def __init__(self, month_no, article, dos, donts, diet):
+        self.month_no = month_no
+        self.article = article
+        self.donts = donts
+        self.dos = dos
+        self.diet = diet
 
 class Blog(db.Model):
-	__tablename__ = 'Blogs'
+    __tablename__ = 'Blogs'
 
-	id = db.Column('blog_id', db.Integer, primary_key=True)
-	author_name = db.Column(db.String)
-	article = db.Column(db.String)
-	timestamp = db.Column(db.DateTime)
-	keywords = db.String(db.String)
+    id = db.Column('blog_id', db.Integer, primary_key=True)
+    author_name = db.Column(db.String)
+    article = db.Column(db.String)
+    timestamp = db.Column(db.DateTime)
+    keywords = db.String(db.String)
 
-	def __init__(self, author_name, article, title, timestamp, keywords):
-		self.author_name = author_name
-		self.article = article
-		self.title = title
-		self.timestamp = timestamp
-		self.keywords = keywords
+    def __init__(self, author_name, article, title, timestamp, keywords):
+        self.author_name = author_name
+        self.article = article
+        self.title = title
+        self.timestamp = timestamp
+        self.keywords = keywords
 
 db.create_all()
 
+class PrebirthView(ModelView):
+    can_create = True
+    can_view_details = True    
+    edit_modal = True
+
+class PostbirthView(ModelView):
+    can_create = True
+    can_view_details = True    
+    edit_modal = True
+
+class BlogView(ModelView):
+    can_create = False
+    can_view_details = True
+
+# setup admin
+admin = Admin(app, name='NewLife', template_mode='bootstrap3')
+admin.add_view(PrebirthView(Prebirth, db.session))
+admin.add_view(PostbirthView(Postbirth, db.session))
+admin.add_view(BlogView(Blog, db.session))
+
 @app.route('/api/prebirth_articles/<int:month_no>')
 def show_prebirth_article(month_no):
-	prebirth_article = Prebirth.query.filter_by(month_no=month_no).all()[0]
-	response = {}
-	prebirth_schema = PrebirthSchema()
-	data = prebirth_schema.dumps(prebirth_article)
-	data = json.loads(data.data)
-	return jsonify({'data':data})
+    prebirth_article = Prebirth.query.filter_by(month_no=month_no).all()[0]
+    response = {}
+    prebirth_schema = PrebirthSchema()
+    data = prebirth_schema.dumps(prebirth_article)
+    data = json.loads(data.data)
+    return jsonify({'data':data})
 
 @app.route('/api/postbirth_articles/<int:month_no>')
 def show_postbirth_article(month_no):
-	postbirth_article = Postbirth.query.filter_by(month_no=month_no).all()[0]
-	response = {}
-	postbirth_schema = PostbirthSchema()
-	data = postbirth_schema.dumps(postbirth_article)
-	data = json.loads(data.data)
-	return jsonify({'data':data})
+    postbirth_article = Postbirth.query.filter_by(month_no=month_no).all()[0]
+    response = {}
+    postbirth_schema = PostbirthSchema()
+    data = postbirth_schema.dumps(postbirth_article)
+    data = json.loads(data.data)
+    return jsonify({'data':data})
 
 
 @app.route('/')
 def index():
-	return 'hello world'
+    return 'hello world'
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
