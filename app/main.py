@@ -85,7 +85,12 @@ def show_prebirth_article(month_no):
 
 @app.route('/api/postbirth_articles/<int:month_no>')
 def show_postbirth_article(month_no):
-	pass
+	postbirth_article = Postbirth.query.filter_by(month_no=month_no).all()[0]
+	response = {}
+	postbirth_schema = PostbirthSchema()
+	data = postbirth_schema.dumps(postbirth_article)
+	data = json.loads(data.data)
+	return jsonify({'data':data})
 
 
 @app.route('/')
