@@ -3,6 +3,7 @@ from marshmallow import Schema, fields
 class PrebirthSchema(Schema):
    id = fields.Integer()
    month_no = fields.Integer()
+   title = fields.String()
    article = fields.String()
    dos = fields.String()
    donts = fields.String()
@@ -11,6 +12,7 @@ class PrebirthSchema(Schema):
 class PostbirthSchema(Schema):
 	id = fields.Integer()
 	month_no = fields.Integer()
+	title = fields.String()
 	article = fields.String()
 	dos = fields.String()
 	donts = fields.String()

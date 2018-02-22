@@ -11,7 +11,7 @@
 }
 
 .sidebar-header {
-	
+	color: #424242;
 }
 
 .sidebar-content {
@@ -20,4 +20,12 @@
 
 .sidebar-list-item {
 	list-style-type: none;
+	padding: 8px;
+	color: #757575;
+}
+
+.sidebar-list-item:hover {
+	cursor: pointer;
+	color: white;
+	background-color: #E0E0E0;
 }

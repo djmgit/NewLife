@@ -10,5 +10,11 @@ app.controller('nlCtrl', function($scope, $http) {
 		});
 	}
 
+	$scope.sidebarClick = function(id) {
+		$http.get("/api/prebirth_articles/" + id).then(function(response) {
+			console.log(response);
+		});
+	}
+
 	console.log($scope.monthList);
 });

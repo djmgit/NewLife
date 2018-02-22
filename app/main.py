@@ -26,13 +26,15 @@ class Prebirth(db.Model):
 
     id = db.Column('artcile_id', db.Integer, primary_key=True)
     month_no = db.Column(db.Integer)
+    title = db.Column(db.String)
     article = db.Column(db.String)
     dos = db.Column(db.String)
     donts = db.Column(db.String)
     diet = db.Column(db.String)
 
-    def __init__(self, month_no, article, dos, donts, diet):
+    def __init__(self, month_no, title, article, dos, donts, diet):
         self.month_no = month_no
+        self.title = title
         self.article = article
         self.dos = dos
         self.donts = donts
@@ -44,13 +46,15 @@ class Postbirth(db.Model):
 
     id = db.Column('article_id', db.Integer, primary_key=True)
     month_no = db.Column(db.Integer)
+    title = db.Column(db.String)
     article = db.Column(db.String)
     dos = db.Column(db.String)
     donts = db.Column(db.String)
     diet = db.Column(db.String)
 
-    def __init__(self, month_no, article, dos, donts, diet):
+    def __init__(self, month_no, title, article, dos, donts, diet):
         self.month_no = month_no
+        self.title = title
         self.article = article
         self.donts = donts
         self.dos = dos
