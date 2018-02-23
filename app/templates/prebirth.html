@@ -9,7 +9,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">Post birth</a></li>
-        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Blogs</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -38,6 +38,28 @@
         </div>
       </div>
       <div class="col-md-9 container">
+        <div class="article">
+          <div class="page-header">
+            <h2> {{ "{{selectedArticle.title}}" }} </h2>
+          </div>
+          <div class="article-body">
+            <p>
+              {{ "{{selectedArticle.article}}" }}
+            </p>
+          </div>
+          <div class="dos">
+            <h4 class="page-header"> DOs </h4>
+            <div class="dos-header"> {{ "{{selectedArticle.dos}}" }} </div>
+          </div>
+          <div class="donts">
+            <h4 class="page-header"> DON'Ts </h4>
+            <div class="dos-header"> {{ "{{selectedArticle.donts}}" }} </div>
+          </div>
+          <div class="diet">
+            <h4 class="page-header"> Diet </h4>
+            <div class="dos-header"> {{ "{{selectedArticle.diet}}" }} </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
