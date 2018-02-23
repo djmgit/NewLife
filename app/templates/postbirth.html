@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout2.html" %}
 {% block body %}
 <div ng-app="nlApp" ng-controller="nlCtrl" class="main">
   <nav class="navbar navbar-inverse navbar-style">
@@ -8,7 +8,7 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="/postbirth">Post birth</a></li>
+        <li><a href="/prebirth">Pre birth</a></li>
         <li><a href="/blogs">Blogs</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -28,7 +28,7 @@
         </div>
         <div class="sidebar-content">
           <div class="page-header">
-            <h4>Prebirth nurturing</h4>
+            <h4>Postbirth nurturing</h4>
           </div>
           <ul class="sidebar-list">
             <li class="sidebar-list-item" ng-repeat="item in monthList" ng-click="sidebarClick(item.id)">

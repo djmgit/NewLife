@@ -32,7 +32,7 @@ class Prebirth(db.Model):
     donts = db.Column(db.String)
     diet = db.Column(db.String)
 
-    def __init__(self, month_no, title, article, dos, donts, diet):
+    def __init__(self, month_no='', title='', article='', dos='', donts='', diet=''):
         self.month_no = month_no
         self.title = title
         self.article = article
@@ -52,7 +52,7 @@ class Postbirth(db.Model):
     donts = db.Column(db.String)
     diet = db.Column(db.String)
 
-    def __init__(self, month_no, title, article, dos, donts, diet):
+    def __init__(self, month_no='', title='', article='', dos='', donts='', diet=''):
         self.month_no = month_no
         self.title = title
         self.article = article
@@ -69,7 +69,7 @@ class Blog(db.Model):
     timestamp = db.Column(db.DateTime)
     keywords = db.String(db.String)
 
-    def __init__(self, author_name, article, title, timestamp, keywords):
+    def __init__(self, author_name='', article='', title='', timestamp='', keywords=''):
         self.author_name = author_name
         self.article = article
         self.title = title
@@ -119,6 +119,10 @@ def show_postbirth_article(month_no):
 @app.route('/prebirth')
 def prebirth():
     return render_template("prebirth.html")
+
+@app.route('/postbirth')
+def postbirth():
+    return render_template("postbirth.html")
 
 
 @app.route('/')
