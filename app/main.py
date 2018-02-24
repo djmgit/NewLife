@@ -77,7 +77,7 @@ class Blog(db.Model):
         self.timestamp = timestamp
         self.keywords = keywords
 
-class User(db.Model):
+class Users(db.Model):
     __tablename__ = 'Users'
 
     id = db.Column('user_id', db.Integer, primary_key=True)
@@ -164,6 +164,15 @@ def signup_user():
     first_name = request.form['firstname']
     last_name = request.form['lastname']
     password = request.form['pass']
+
+    user = Users.query.filter_by(email=email).first()
+    if user:
+        return redirect(url_for('signup.html'))
+    else:
+        new_user = Users(email, firstname, lastname, password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('index'))
 
 
 
