@@ -65,6 +65,7 @@ class Blog(db.Model):
 
     id = db.Column('blog_id', db.Integer, primary_key=True)
     author_name = db.Column(db.String)
+    title = db.Column(db.String)
     article = db.Column(db.String)
     timestamp = db.Column(db.DateTime)
     keywords = db.String(db.String)
@@ -123,6 +124,14 @@ def prebirth():
 @app.route('/postbirth')
 def postbirth():
     return render_template("postbirth.html")
+
+@app.route('/blogs')
+def show_blogs():
+    return "blogs"
+
+@app.route('/blogs/add')
+def add_blog():
+    return render_template("add_blog.html")
 
 
 @app.route('/')
