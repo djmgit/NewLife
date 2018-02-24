@@ -77,6 +77,22 @@ class Blog(db.Model):
         self.timestamp = timestamp
         self.keywords = keywords
 
+class User(db.Model):
+    __tablename__ = 'Users'
+
+    id = db.Column('user_id', db.Integer, primary_key=True)
+    email = db.Column(db.String)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
+    password = db.Column(db.String)
+
+    def __init__(self, email='', first_name='', last_name='', password=''):
+        self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
+        self.password = password
+
+
 db.create_all()
 
 class PrebirthView(ModelView):
@@ -149,7 +165,7 @@ def signup_user():
     last_name = request.form['lastname']
     password = request.form['pass']
 
-    
+
 
 @app.route('/login')
 def login():
