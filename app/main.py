@@ -138,6 +138,23 @@ def add_blog():
 def index():
     return 'hello world'
 
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
+
+@app.route('/signup_user')
+def signup_user():
+    email = request.form['email']
+    first_name = request.form['firstname']
+    last_name = request.form['lastname']
+    password = request.form['pass']
+
+    
+
+@app.route('/login')
+def login():
+    return 'login'
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
 
