@@ -92,6 +92,17 @@ class Users(db.Model):
         self.last_name = last_name
         self.password = password
 
+    def __repr__(self):
+        return '<User %r>' % self.email
+    def is_authenticated(self):
+        return True
+    def is_active(self):
+        return True
+    def is_anonymous(self):
+        return False
+    def get_id(self):
+        return str(self.email)
+
 
 db.create_all()
 
@@ -109,11 +120,24 @@ class BlogView(ModelView):
     can_create = False
     can_view_details = True
 
+class UsersView(ModelView):
+    can_create = False
+    can_view_details = True
+
 # setup admin
 admin = Admin(app, name='NewLife', template_mode='bootstrap3')
 admin.add_view(PrebirthView(Prebirth, db.session))
 admin.add_view(PostbirthView(Postbirth, db.session))
 admin.add_view(BlogView(Blog, db.session))
+admin.add_view(UsersView(Users, db.session))
+
+# setup authentication
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(email):
+    return Users.query.filter_by(email=email).first()
 
 @app.route('/api/prebirth_articles/<int:month_no>')
 def show_prebirth_article(month_no):
@@ -146,6 +170,7 @@ def show_blogs():
     return "blogs"
 
 @app.route('/blogs/add')
+@login_required
 def add_blog():
     return render_template("add_blog.html")
 
@@ -158,8 +183,9 @@ def index():
 def signup():
     return render_template("signup.html")
 
-@app.route('/signup_user')
+@app.route('/signup_user', methods=('GET', 'POST'))
 def signup_user():
+    print (request.form)
     email = request.form['email']
     first_name = request.form['firstname']
     last_name = request.form['lastname']
@@ -169,16 +195,39 @@ def signup_user():
     if user:
         return redirect(url_for('signup.html'))
     else:
-        new_user = Users(email, firstname, lastname, password)
+        new_user = Users(email, first_name, last_name, password)
         db.session.add(new_user)
         db.session.commit()
+        login_user(new_user)
+        g.user = current_user
         return redirect(url_for('index'))
 
-
-
-@app.route('/login')
+@app.route('/login', methods=('GET', 'POST'))
 def login():
-    return 'login'
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['pass']
+        user = Users.query.filter_by(email=email).first()
+
+        if user:
+            if user.password == password:
+                login_user(user)
+                g.user = current_user
+                return redirect(url_for('index'))
+            else:
+                return redirect(url_for('login'))
+        else:
+            return redirect(url_for('login'))
+    else:
+        return render_template('login.html')
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    g.user = None
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
