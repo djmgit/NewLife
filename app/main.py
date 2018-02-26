@@ -186,7 +186,7 @@ def add_blog():
     else:
         return render_template("add_blog.html")
 
-@app.route('/blogs/blog_titles')
+@app.route('/api/blogs/blog_titles')
 def blog_titles():
     blogs = Blog.query.all()
     
@@ -194,7 +194,7 @@ def blog_titles():
     response = [{'id': blog.id, 'title': blog.title} for blog in blogs]
     return jsonify({'data': response})
 
-@app.route('/blogs/get_blog/<int:blog_id>')
+@app.route('/api/blogs/get_blog/<int:blog_id>')
 def get_blog(blog_id):
     blog = Blog.query.filter_by(id=blog_id).all()[0]
     response = {}

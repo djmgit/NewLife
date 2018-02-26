@@ -33,3 +33,22 @@
 .article {
 	margin-right: 20px;
 }
+
+.article-body {
+	margin-top: 20px;
+}
+
+.blog-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+	font-family: verdana;
+	color: #9E9E9E;
+}
+
+.keywords {
+	margin-top: 40px;
+	color: #9E9E9E;
+}

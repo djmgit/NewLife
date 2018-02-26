@@ -1,23 +1,20 @@
 var app = angular.module('nlApp', []);
 app.controller('nlCtrl', function($scope, $http) {
-	NUMBER_OF_MONTHS = 9;
-
-	$scope.selectedArticle = {};
-	$scope.monthList = [];
-	for (var i = 0; i < NUMBER_OF_MONTHS; i++) {
-		$scope.monthList.push({
-			'label': 'Month ' + (i + 1),
-			'id': (i + 1)
-		});
-	}
+	$scope.selectedArticle = null;
+	$scope.articles = []
 
 	$scope.sidebarClick = function(id) {
-		$http.get("/api/prebirth_articles/" + id).then(function(response) {
+		$http.get("/api/blogs/get_blog/" + id).then(function(response) {
 			$scope.selectedArticle = response.data.data;
+			$(".article-body").html(response.data.data.article);
+			console.log(response.data.data.article);
 		});
 	}
 
-	$scope.sidebarClick(1);
+	// get artcle titles and ids
 
-	console.log($scope.monthList);
+	$http.get('/api/blogs/blog_titles').then(function(response) {
+		$scope.articles = response.data.data.reverse();
+		$scope.sidebarClick($scope.articles[0].id);
+	});
 });
