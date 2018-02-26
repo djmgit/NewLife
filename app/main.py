@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, request, jsonify, render_template, g
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
 from flask_admin import Admin, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
@@ -64,17 +65,18 @@ class Blog(db.Model):
     __tablename__ = 'Blogs'
 
     id = db.Column('blog_id', db.Integer, primary_key=True)
+    author_email = db.Column(db.String)
     author_name = db.Column(db.String)
     title = db.Column(db.String)
     article = db.Column(db.String)
-    timestamp = db.Column(db.DateTime)
+    time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     keywords = db.String(db.String)
 
-    def __init__(self, author_name='', article='', title='', timestamp='', keywords=''):
+    def __init__(self, author_email='', author_name='', article='', title='', keywords=''):
+        self.author_email = author_email
         self.author_name = author_name
         self.article = article
         self.title = title
-        self.timestamp = timestamp
         self.keywords = keywords
 
 class Users(db.Model):
@@ -169,11 +171,20 @@ def postbirth():
 def show_blogs():
     return "blogs"
 
-@app.route('/blogs/add')
+@app.route('/blogs/add', methods=('GET', 'POST'))
 @login_required
 def add_blog():
-    return render_template("add_blog.html")
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        keywords = request.form['keywords']
 
+        blog = Blog(current_user.email, current_user.first_name + ' ' + current_user.last_name, body, title, keywords)
+        db.session.add(blog)
+        db.session.commit()
+        return redirect(url_for('blogs'))
+    else:
+        return render_template("add_blog.html")
 
 @app.route('/')
 def index():

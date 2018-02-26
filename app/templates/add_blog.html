@@ -8,12 +8,10 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="/prebirth">Pre birth</a></li>
-        <li><a href="/postbirth">Post birth</a></li>
+        <li><a href="/blogs">Blogs</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
       </ul>
     </div>
   </nav>
@@ -21,18 +19,18 @@
   <div class="main-content">
     <div class="container">
       <div class="form">
-        <form action="/blogs/new_blog" method="POST">
+        <form action="/blogs/add" method="POST">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" class="form-control">
+            <input type="text" class="form-control" id="title" name="title">
           </div>
           <div class="form-group">
             <label for="summernote">Article</label>
-            <textarea id="summernote" name="editordata" class="form-control"></textarea>
+            <textarea id="summernote" class="form-control" name="body"></textarea>
           </div>
           <div class="form-group">
             <label for="keywords">keywords</label>
-            <input type="text" class="form-control" id="keywords" class="form-control">
+            <input type="text" id="keywords" class="form-control" name="keywords">
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
