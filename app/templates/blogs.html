@@ -1,0 +1,67 @@
+{% extends "layout_blogs.html" %}
+{% block body %}
+<div ng-app="nlApp" ng-controller="nlCtrl" class="main">
+  <nav class="navbar navbar-inverse navbar-style">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">NewLife</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="/prebirth">Pre birth</a></li>
+        <li><a href="/postbirth">Post birth</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="row">
+      <div class="col-md-3 sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-header-pic">
+            <img class="img-responsive" src="/static/images/sidebarheader1.jpeg">
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <div class="page-header">
+            <h4>Our blogs</h4>
+          </div>
+          <ul class="sidebar-list">
+            <li class="sidebar-list-item" ng-repeat="item in monthList" ng-click="sidebarClick(item.id)">
+              {{ "{{item.label}}" }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="article">
+          <div class="page-header">
+            <h2> {{ "{{selectedArticle.title}}" }} </h2>
+          </div>
+          <div class="article-body">
+            <p>
+              {{ "{{selectedArticle.article}}" }}
+            </p>
+          </div>
+          <div class="dos">
+            <h4 class="page-header"> DOs </h4>
+            <div class="dos-header"> {{ "{{selectedArticle.dos}}" }} </div>
+          </div>
+          <div class="donts">
+            <h4 class="page-header"> DON'Ts </h4>
+            <div class="dos-header"> {{ "{{selectedArticle.donts}}" }} </div>
+          </div>
+          <div class="diet">
+            <h4 class="page-header"> Diet </h4>
+            <div class="dos-header"> {{ "{{selectedArticle.diet}}" }} </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

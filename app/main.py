@@ -70,7 +70,7 @@ class Blog(db.Model):
     title = db.Column(db.String)
     article = db.Column(db.String)
     time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
-    keywords = db.String(db.String)
+    keywords = db.Column(db.String)
 
     def __init__(self, author_email='', author_name='', article='', title='', keywords=''):
         self.author_email = author_email
@@ -168,8 +168,8 @@ def postbirth():
     return render_template("postbirth.html")
 
 @app.route('/blogs')
-def show_blogs():
-    return "blogs"
+def blogs():
+    return render_template('blogs.html')
 
 @app.route('/blogs/add', methods=('GET', 'POST'))
 @login_required
@@ -185,6 +185,30 @@ def add_blog():
         return redirect(url_for('blogs'))
     else:
         return render_template("add_blog.html")
+
+@app.route('/blogs/blog_titles')
+def blog_titles():
+    blogs = Blog.query.all()
+    
+    response = []
+    response = [{'id': blog.id, 'title': blog.title} for blog in blogs]
+    return jsonify({'data': response})
+
+@app.route('/blogs/get_blog/<int:blog_id>')
+def get_blog(blog_id):
+    blog = Blog.query.filter_by(id=blog_id).all()[0]
+    response = {}
+    response['author_email'] = blog.author_email
+    response['author_name'] = blog.author_name
+    response['title'] = blog.title
+    response['article'] = blog.article
+    response['time_created'] = blog.time_created.strftime("%y-%m-%d-%H-%M")
+    response['keywords'] = blog.keywords
+
+    print (response)
+
+    return jsonify({'data': response})
+
 
 @app.route('/')
 def index():

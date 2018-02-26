@@ -17,3 +17,12 @@ class PostbirthSchema(Schema):
 	dos = fields.String()
 	donts = fields.String()
 	diet = fields.String()
+
+class BlogSchema(Schema):
+    id = fields.Integer()
+    author_email = fields.String()
+    author_name = fields.String()
+    title = fields.String()
+    article = fields.String()
+    time_created = fields.DateTime()
+    keywords = fields.String()

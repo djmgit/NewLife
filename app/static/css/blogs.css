@@ -1,0 +1,35 @@
+.main {
+	overflow-x: hidden;
+}
+
+.navbar-style {
+	margin-bottom: 0px;
+}
+
+.sidebar {
+	
+}
+
+.sidebar-header {
+	color: #424242;
+}
+
+.sidebar-content {
+	padding-left: 10px;
+}
+
+.sidebar-list-item {
+	list-style-type: none;
+	padding: 8px;
+	color: #757575;
+}
+
+.sidebar-list-item:hover {
+	cursor: pointer;
+	color: white;
+	background-color: #E0E0E0;
+}
+
+.article {
+	margin-right: 20px;
+}
