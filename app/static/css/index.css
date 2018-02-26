@@ -34,4 +34,14 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	margin-bottom: 100px;
+}
+
+.nav-link {
+	color: #9E9E9E;
+	transition: 0.3s;
+}
+
+.nav-link:hover {
+	color: #424242;
 }
