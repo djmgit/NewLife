@@ -212,7 +212,7 @@ def get_blog(blog_id):
 
 @app.route('/')
 def index():
-    return 'hello world'
+    return render_template('index.html')
 
 @app.route('/signup')
 def signup():
