@@ -73,3 +73,38 @@ htttp://127.0.0.1:5000
 ```
 The fron end has been tested on **Google Chrome** and **Firefox**
 
+### Using the app
+
+<table>
+<tr>
+<td><img src="Images/img1.png"></td>
+</tr>
+</table>
+You can view the **Prenatal instructions and articles** in the prebirth section. These can be updated and maintained admin
+<table>
+<tr>
+<td><img src="Images/img2.png"></td>
+</tr>
+</table>
+You can view the **Postnatal instructions and articles** in the postbirth section. These can be updated and maintained admin
+<table>
+<tr>
+<td><img src="Images/img3.png"></td>
+</tr>
+</table>
+You can view the **blogs** in the blogs section. These can be published by anyone who has an account
+<table>
+<tr>
+<td><img src="Images/img4.png"></td>
+</tr>
+</table>
+You can write **blogs** using the Rich Text edittor.
+<table>
+<tr>
+<td><img src="Images/img5.png"></td>
+</tr>
+</table>
+
+The entire app is API based, and so it acn be easily used on mobile devices with minimum performance issues.
+
+
