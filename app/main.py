@@ -109,20 +109,68 @@ class Users(db.Model):
 db.create_all()
 
 class PrebirthView(ModelView):
+    def is_accessible(self):
+        if current_user.is_authenticated:
+            if current_user.email == 'admin@admin.com' and current_user.password == 'admin123':
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login'))
     can_create = True
     can_view_details = True    
     edit_modal = True
 
 class PostbirthView(ModelView):
+    def is_accessible(self):
+        if current_user.is_authenticated:
+            if current_user.email == 'admin@admin.com' and current_user.password == 'admin123':
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login'))
     can_create = True
     can_view_details = True    
     edit_modal = True
 
 class BlogView(ModelView):
+    def is_accessible(self):
+        if current_user.is_authenticated:
+            if current_user.email == 'admin@admin.com' and current_user.password == 'admin123':
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login'))
     can_create = False
     can_view_details = True
 
 class UsersView(ModelView):
+    def is_accessible(self):
+        if current_user.is_authenticated:
+            if current_user.email == 'admin@admin.com' and current_user.password == 'admin123':
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('login'))
     can_create = False
     can_view_details = True
 
