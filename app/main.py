@@ -257,6 +257,10 @@ def login():
         return render_template('login.html')
 
 
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect(url_for('login'))
+
 @app.route("/logout")
 @login_required
 def logout():
