@@ -125,6 +125,18 @@ Use the above credentials to explore the admin system.
 
 NewLife is API based. That is, the back end, exposes most if its features and contents as REST APIs.
 
+- To view particular prebirth article, use th following endpoints:
+  https://newlifegenesis.herokuapp.com/api/prebirth_articles/<month_no>
+
+- To view particular postbirth article, use the following endpoint
+  https://newlifegenesis.herokuapp.com/api/postbirth_articles/<month_no>
+  
+- To view all the blog titles and their id, use the following endpoint:
+  https://newlifegenesis.herokuapp.com/api/blogs/blog_titles
+  
+- To view a particular blog, use the following endpoint:
+  https://newlifegenesis.herokuapp.com/api/blogs/get_blog/<blog_id>
+
 
 
 
