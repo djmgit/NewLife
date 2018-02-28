@@ -98,7 +98,8 @@ You can view the **blogs** in the blogs section. These can be published by anyon
 <td><img src="Images/img4.png"></td>
 </tr>
 </table>
-You can write **blogs** using the Rich Text edittor.
+You can write **blogs** using the Rich Text edittor. If the Rich Text editor does not show up, make sure
+you enable script loading in the upper right corner of your browser's search bar.
 <table>
 <tr>
 <td><img src="Images/img5.png"></td>
@@ -106,5 +107,24 @@ You can write **blogs** using the Rich Text edittor.
 </table>
 
 The entire app is API based, and so it acn be easily used on mobile devices with minimum performance issues.
+
+### Admin system
+
+NewLife has got a functional admin system. Admin can update app content, update prenatal and postnatal content, edit blogs
+(to remove any unwanted conent).
+
+Admin system can be found at :
+https://newlifegenesis.herokuapp.com/admin/
+For testing purpose:
+Email: admin@admin.com
+Password: admin123
+
+Use the above credentials to explore the admin system.
+
+### APIs
+
+NewLife is API based. That is, the back end, exposes most if its features and contents as REST APIs.
+
+
 
 
