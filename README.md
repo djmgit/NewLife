@@ -143,6 +143,25 @@ NewLife is API based. That is, the back end, exposes most if its features and co
   
 - To view a particular blog, use the following endpoint:
   https://newlifegenesis.herokuapp.com/api/blogs/get_blog/<blog_id>
+  
+  **The present app is just prototype of the idea proposed, the content is dummy content used from random web articles,
+    the basic target is to describe the idea using this prototype**
+    
+### Future Milestones
+
+A number of ideas could not be implemented due to time constraints and other issues. Those are listed below.
+The main idea of this project is to create a single common platform to help mothers and their new born by providing
+some valuable data and services.
+
+- A question answer system. Users (mothers) will throw questions and get almost immidiete response. This can be be
+  done by creating a rich knowledge base, and  taking help of NLP and chat bot technologies which are prevalent.
+
+- The above idea can be extended to social media chatbots which will be more helpful.
+
+- A feed wall, like popular social media platforms, where users can ask questions and other users can post answers.
+
+- A location based service which will provide important information like nearest doctors, hospitals and other medical
+  services.
 
 
 
