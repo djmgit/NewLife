@@ -121,6 +121,13 @@ Password: admin123
 
 Use the above credentials to explore the admin system.
 
+<table>
+<tr>
+<td><img src="Images/img6.png"></td>
+</tr>
+</table>
+
+
 ### APIs
 
 NewLife is API based. That is, the back end, exposes most if its features and contents as REST APIs.
